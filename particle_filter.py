@@ -164,14 +164,16 @@ class ParticleFilter:
         """ plt.xticks(np.arange(tim_min,time_max,4*self.time_step))
         plt.yticks(np.arange(x_min,x_max,4*(x_max-x_min)/self.iteration)) """
 
-        ax_main.plot(t[0:100],self.state_trajectory[0,0:100],'r-')
-
-        ax_main.plot(t[0:100],self.estimated_states[0,0:100],'b-')
+        ax_main.plot(t[0:100],self.state_trajectory[0,0:100],'r-',label="true states")
+        plt.legend(loc='upper left')
+        ax_main.plot(t[0:100],self.estimated_states[0,0:100],'b-',label="estimated states")
+        plt.legend(loc='upper left')
         plt.grid(True)
         error_ax=fig.add_subplot(gs[0:1,2:],facecolor=(0.99,0.99,0.99))
 
-        error_ax.plot(t[0:100],self._error_sequence[0,0:100],'b-')
+        error_ax.plot(t[0:100],self._error_sequence[0,0:100],'b-',label="error in estimates")
         plt.grid(True)
+        plt.legend(loc='upper right')
         plt.show()
 
     # animation
